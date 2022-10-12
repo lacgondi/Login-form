@@ -2,40 +2,61 @@ let emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))
 let userRegExp = /^[A-Za-z0-9.]+$/;
 let passRegExp = /^[A-Za-z0-9_.-]+$/;
 
-function register(u: HTMLInputElement, p: HTMLInputElement , e: HTMLInputElement) {
-    let checkEmail = (email:String)=>{
-        return String(email).toLowerCase().match(emailRegExp);
-    }
-    let checkUser = (user:String)=>{
-        return String(user).toLowerCase().match(userRegExp);
-    }
-    let checkPass = (pass:String)=>{
-        return String(pass).match(passRegExp);
-    }
-    let err:Boolean = false;
+let checkEmail = (email:String)=>{
+    return String(email).toLowerCase().match(emailRegExp);
+}
+let checkUser = (user:String)=>{
+    return String(user).toLowerCase().match(userRegExp);
+}
+let checkPass = (pass:String)=>{
+    return String(pass).match(passRegExp);
+}
 
-    if(!checkEmail(e.value)){
-        err=true;
-        document.getElementById('emailErr')!.innerText ='Hibás e-mail'
-    }
-    if(!checkUser(u.value) || u.value.length>30 || u.value.length<6){
-        err=true;
-        document.getElementById('userErr')!.innerText = 'Hibás felhasználó név';
-    }
-    if(!checkPass(p.value) || p.value.length>10 || p.value.length<5){
-        err =true;
-        document.getElementById('passErr')!.innerText = 'Hibás jelszó';
-    }
+let err:Boolean = false;
+function register() {
     if(!err){
-        alert('Logged in')
+        alert('Sikeres regisztráció')
+    }else{
+        alert('Hibás regisztráció!\nPróbáld újra')
     }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   let username = document.getElementById("username") as HTMLInputElement;
+  username.addEventListener('change', ()=>{
+    if(username.value.length>30 || username.value.length<6 || !checkUser(username.value)){
+        err=true;
+        document.getElementById('userErr')!.innerText = 'Hibás felhasználó név';
+    }else{
+        err=false;
+        document.getElementById('userErr')!.innerText = '';
+    }
+    console.log(checkUser(username.value));
+  })
+
   let password = document.getElementById("password") as HTMLInputElement;
+  password.addEventListener('change', ()=>{
+    if(!checkPass(password.value) || password.value.length>10 || password.value.length<5){
+        err =true;
+        document.getElementById('passErr')!.innerText = 'Hibás jelszó';
+    }else{
+        err=false;
+        document.getElementById('passErr')!.innerText = '';
+    }
+    console.log(checkUser(password.value));
+  })
+
   let email = document.getElementById("email") as HTMLInputElement;
-  document.getElementById("register")?.addEventListener("click", function () {
-    register(username, password, email);
-  });
+  email.addEventListener('change', ()=>{
+    if(!checkEmail(email.value)){
+        err=true;
+        document.getElementById('emailErr')!.innerText ='Hibás e-mail'
+    }else{
+        err = false;
+        document.getElementById('emailErr')!.innerText =''
+    }
+    console.log(checkUser(email.value));
+  })
+
+  document.getElementById("register")?.addEventListener("click", register);
 });
