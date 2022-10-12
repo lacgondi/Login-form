@@ -12,7 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Custom Theme files -->
-<link href="style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="src/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- //Custom Theme files -->
 <!-- web font -->
 <link href="//petriklajosszki.sharepoint.com///fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
@@ -21,13 +21,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <body>
 	<!-- main -->
 	<div class="main-w3layouts wrapper">
-		<h1>Creative SignUp Form</h1>
+		<h1>Creative Regisztrációs Űrlap</h1>
 		<div class="main-agileinfo">
 			<div class="agileits-top">
 				<form action="#" method="post">
-					<input class="text" type="text" name="Username" placeholder="Felhasználó név" required="">
-					<input class="text email" type="email" name="email" placeholder="E-mail" required="">
-					<input class="text" type="password" name="password" placeholder="Jelszó" required="">
+					<input class="text" type="text" name="Username" id="username" placeholder="Felhasználó név" required="">
+					<input class="text email" type="email" name="email" id="email" placeholder="E-mail" required="">
+					<input class="text" type="password" name="password" id="password" placeholder="Jelszó" required="">
 					<div class="wthree-text">
 						<label class="anim">
 							<input type="checkbox" class="checkbox" required="">
@@ -35,7 +35,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</label>
 						<div class="clear"> </div>
 					</div>
-					<input type="submit" value="Regisztrálás">
+					<input id="register" type="submit" value="Regisztrálás">
 				</form>
 				<p>Van fiókod? <a href="#"> Bejelentkezés!</a></p>
 			</div>
