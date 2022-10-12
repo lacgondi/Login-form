@@ -34,6 +34,18 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(checkUser(username.value));
   })
 
+  let email = document.getElementById("email") as HTMLInputElement;
+  email.addEventListener('change', ()=>{
+    if(!checkEmail(email.value)){
+        err=true;
+        document.getElementById('emailErr')!.innerText ='Hibás e-mail'
+    }else{
+        err = false;
+        document.getElementById('emailErr')!.innerText =''
+    }
+    console.log(checkUser(email.value));
+  })
+
   let password = document.getElementById("password") as HTMLInputElement;
   password.addEventListener('change', ()=>{
     if(!checkPass(password.value) || password.value.length>10 || password.value.length<5){
@@ -46,17 +58,18 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(checkUser(password.value));
   })
 
-  let email = document.getElementById("email") as HTMLInputElement;
-  email.addEventListener('change', ()=>{
-    if(!checkEmail(email.value)){
-        err=true;
-        document.getElementById('emailErr')!.innerText ='Hibás e-mail'
+  let rePassword = document.getElementById('repassword') as HTMLInputElement;
+  rePassword.addEventListener('change', ()=>{
+    if(rePassword.value != password.value){
+        err =true;
+        document.getElementById('repassErr')!.innerText = 'A jelszavak nem egyeznek';
     }else{
-        err = false;
-        document.getElementById('emailErr')!.innerText =''
+        err=false;
+        document.getElementById('repassErr')!.innerText = '';
     }
-    console.log(checkUser(email.value));
+    console.log(rePassword.value)
   })
+
 
   document.getElementById("register")?.addEventListener("click", register);
 });
