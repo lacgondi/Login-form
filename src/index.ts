@@ -3,7 +3,6 @@ let userRegExp = /^[A-Za-z0-9.]+$/;
 let passRegExp = /^[A-Za-z0-9_.-]+$/;
 
 function register(u: HTMLInputElement, p: HTMLInputElement , e: HTMLInputElement) {
-    let err:Boolean = false;
     let checkEmail = (email:String)=>{
         return String(email).toLowerCase().match(emailRegExp);
     }
@@ -13,15 +12,17 @@ function register(u: HTMLInputElement, p: HTMLInputElement , e: HTMLInputElement
     let checkPass = (pass:String)=>{
         return String(pass).match(passRegExp);
     }
+    let err:Boolean = false;
+
     if(!checkEmail(e.value)){
         err=true;
         document.getElementById('emailErr')!.innerText ='Hibás e-mail'
     }
-    if(!checkUser(u.value)){
+    if(!checkUser(u.value) || u.value.length>30 || u.value.length<6){
         err=true;
         document.getElementById('userErr')!.innerText = 'Hibás felhasználó név';
     }
-    if(!checkPass(p.value) && p.value.length>10 || p.value.length<5){
+    if(!checkPass(p.value) || p.value.length>10 || p.value.length<5){
         err =true;
         document.getElementById('passErr')!.innerText = 'Hibás jelszó';
     }
